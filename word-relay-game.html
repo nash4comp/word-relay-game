@@ -1,12 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Word relay game</title>
 </head>
+
 <body>
-  
+  <div><span id="order">1</span>st person</div>
+  <div>Word: <span id="word"></span></div>
+  <input type="text">
+  <button class="target">input text</button>
+
+  <script>
+    const number = parseInt(prompt('How many people will participate?')); // const means immutable variable
+
+    // $ of variable name means seleted object
+    // document is an object for HTML
+    // querySelector: Returns the first element that matches a specified CSS selector(s) in the document
+    // for more information https://www.w3schools.com/jsref/dom_obj_document.asp
+    const $button = document.querySelector('button');
+    const $input = document.querySelector('input');
+    const $word = document.querySelector('#word'); // # is for ID attribute
+    const $order = document.querySelector('#order');
+
+    let currentWord;
+    let nextWord;
+    // To do below codes
+    const onClickButton = () => {
+      if (!currentWord) {
+        console.log(currentWord);
+      } else {
+        console.log(currentWord);
+
+      }
+
+    };
+
+    const onInput = () => {
+
+    };
+
+    $button.addEventListener('click', onClickButton);
+    $input.addEventListener('input', onInput);
+
+
+
+
+
+
+  </script>
 </body>
+
 </html>
