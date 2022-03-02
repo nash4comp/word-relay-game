@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <div><span id="order">1</span>st person</div>
+  <div><span id="order">1</span><span id="ordinal">st</span> person</div>
   <div>Word: <span id="word"></span></div>
   <input type="text">
   <button class="target">input text</button>
@@ -22,25 +22,91 @@
     // querySelector: Returns the first element that matches a specified CSS selector(s) in the document
     // for more information https://www.w3schools.com/jsref/dom_obj_document.asp
     const $button = document.querySelector('button');
-    const $input = document.querySelector('input');
-    const $word = document.querySelector('#word'); // # is for ID attribute
+    const $input = document.querySelector('input'); // set $input variable as input prompt (#57)
+    const $word = document.querySelector('#word'); // # is for ID attribute, selected $word (#13)
     const $order = document.querySelector('#order');
+    const $ordinal = document.querySelector('#ordinal');
 
     let currentWord;
-    let nextWord;
+    let newWord = '';
+    let ordinal;
+
     // To do below codes
-    const onClickButton = () => {
-      if (!currentWord) {
-        console.log(currentWord);
+    const onClickButton = () => {   // When click the button
+      if (!currentWord) { // Is currentWord empty?
+        // empty case
+        currentWord = newWord;
+        $word.textContent = currentWord; // update currentWord text in web as newWord
+        $input.value = '';  // set empty for input value
+
+        // current order
+        const order = Number($order.textContent); // store the value of order number, textContent returns string
+        if (order + 1 > number) {
+          $order.textContent = 1; // automatically type casted to number
+        } else {
+          $order.textContent = order + 1; //
+        }
+
+        ordinal = Number($order.textContent); // to be changed for covering 21th, 22nd, 23rd etc...
+        switch(ordinal) {
+          case 1:
+            $ordinal.textContent = 'st';
+            break;
+          case 2:
+            $ordinal.textContent = 'nd';
+            break;
+          case 3:
+            $ordinal.textContent = 'rd';
+            break;
+          default:
+            $ordinal.textContent = 'th';
+        }
+
       } else {
-        console.log(currentWord);
+        // not empty case
+        if (currentWord[currentWord.length - 1] === newWord[0]) { // Is the beginning letter matched with the last letter of previous word?
+          // matched
+          currentWord = newWord;
+          $word.textContent = currentWord; // update currentWord text in web as newWord
+          $input.value = '';  // set empty for input value
+
+          // current order
+          const order = Number($order.textContent); // store the value of order number, textContent returns string
+
+
+          if (order + 1 > number) {
+            $order.textContent = 1; // automatically type casted to number
+          } else {
+            $order.textContent = order + 1; //
+          }
+
+          ordinal = Number($order.textContent); // to be changed for covering 21th, 22nd, 23rd etc...
+          switch(ordinal) {
+          case 1:
+            $ordinal.textContent = 'st';
+            break;
+          case 2:
+            $ordinal.textContent = 'nd';
+            break;
+          case 3:
+            $ordinal.textContent = 'rd';
+            break;
+          default:
+            $ordinal.textContent = 'th';
+        }
+
+        } else {
+          // not matched
+          alert('not matched');
+
+        }
 
       }
 
     };
 
-    const onInput = () => {
-
+    const onInput = (event) => {  // Calls onInput if click input text
+      newWord = event.target.value; // insert the value into newWord when the event of target class(#15) invoked
     };
 
     $button.addEventListener('click', onClickButton);
