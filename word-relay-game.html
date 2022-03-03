@@ -48,7 +48,7 @@
         }
 
         ordinal = Number($order.textContent); // to be changed for covering 21th, 22nd, 23rd etc...
-        switch(ordinal) {
+        switch (ordinal) {
           case 1:
             $ordinal.textContent = 'st';
             break;
@@ -72,8 +72,6 @@
 
           // current order
           const order = Number($order.textContent); // store the value of order number, textContent returns string
-
-
           if (order + 1 > number) {
             $order.textContent = 1; // automatically type casted to number
           } else {
@@ -81,42 +79,30 @@
           }
 
           ordinal = Number($order.textContent); // to be changed for covering 21th, 22nd, 23rd etc...
-          switch(ordinal) {
-          case 1:
-            $ordinal.textContent = 'st';
-            break;
-          case 2:
-            $ordinal.textContent = 'nd';
-            break;
-          case 3:
-            $ordinal.textContent = 'rd';
-            break;
-          default:
-            $ordinal.textContent = 'th';
-        }
-
+          switch (ordinal) {
+            case 1:
+              $ordinal.textContent = 'st';
+              break;
+            case 2:
+              $ordinal.textContent = 'nd';
+              break;
+            case 3:
+              $ordinal.textContent = 'rd';
+              break;
+            default:
+              $ordinal.textContent = 'th';
+          }
         } else {
           // not matched
           alert('not matched');
-
         }
-
       }
-
     };
-
     const onInput = (event) => {  // Calls onInput if click input text
       newWord = event.target.value; // insert the value into newWord when the event of target class(#15) invoked
     };
-
     $button.addEventListener('click', onClickButton);
     $input.addEventListener('input', onInput);
-
-
-
-
-
-
   </script>
 </body>
 
