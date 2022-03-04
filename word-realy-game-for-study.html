@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <span id="order">1</span>
+    <span id="ordinal">st</span> person
+  </div>
+  <div>
+    Word: 
+    <span id="word"></span>
+  </div>
+
+  <input type="text">
+  <button class="target">input text</button>
+
+<script>
+  // document는 웹브라우저의 객체를 다루는 함수이다.
+
+  // document로 button element를 선택해서, 그것을 $button이라는 변수에 넣는다.
+  // 즉, document 타입의 객체를 $button에 할당하는 것이다.
+  const $button   = document.querySelector('button'); 
+
+  // 마찬가지로 input element를 선택해서, 그것을 $input이라는 변수에 넣는다.
+  const $input    = document.querySelector('input');
+
+  // ID가 word인 element를 찾아서 그것을 선택해서 $word라는 변수에 넣는다. 
+  const $word     = document.querySelector('#word');
+  const $order    = document.querySelector('#order');
+  const $ordinal  = document.querySelector('#ordinal');
+
+  let currentWord;
+  let newWord;
+  let ordinal;
+
+
+/*
+  버튼이 선택되면 아래의 함수인 OnclickButton을 호출한다.
+  아래 함수는 화살표 함수로 축약된 형태이며, 원래는 다음과 같다. 
+  const OnclickButton() {
+    console.log('Clicl button');
+  }
+
+*/
+  const onClickButton = () => {
+    console.log('Click button');
+  };
+
+/*
+  아래의 버튼은 입력 버튼이 눌리면 호출이 된다.
+  역시 화살표 함수 형태로 축약된 함수이다.
+  원래의 함수는 다음과 같다.
+  const OnInputButton() {
+    console.log('Input button');
+  }
+
+  아래에서 event는 이벤트가 발생했을 때 함수의 인자로 넘어온 매개변수이다.
+  이벤트가 발생한 요소에 접근할 때는 반드시 event.target을 사용해야 한다.
+  this 키워드로는 접근할 수 없다.
+  event parameter는 해당 input 창을 가리키는 객체이다.
+  Events and parameters describe the action a user completes along with the data in the action. 
+  An event is the action that the user completes and the parameters for the event contain the data associated with that event.
+
+  아래 함수를 다시 써보면 이렇다.
+
+  const onInputButton(event) {
+    newWord = event.target.value;
+    console.log(newWord);
+  }
+
+*/
+  const onInputButton = (event) => {
+    // input 창에 유저가 입력을 하면 한 문자를 입력할 때마다 event가 parameter로 넘어온다.
+    // 이 parameter를 이용해서 newWord에 저장해야 한다.
+    newWord = event.target.value;
+    
+    console.log(newWord);
+  };
+
+  /* 
+  위의 것은 화살표 함수, 괄호 안에는 파라메터가 들어간다.
+  
+  원래 함수
+  const doubleNum(x) {
+    return x * 2;
+  }
+
+  한번 화살표 함수로 축약한 형태
+  const doubleNum = (x) => {
+    return x * 2;
+  }
+  
+  실행부분이 한줄이므로 이렇게 한번 더 축약이 가능하다.
+  const doubleNum = (x) => x * 2;
+  */
+
+  /*
+  $button은 button element를 선택한 값을 가진 변수이다.
+  이 변수(document 객체)에 존재하고 있는 addEventListner라는 함수를 호출하는 것이다.
+  
+  addEventListener는 특정 이벤트가 발생되었을 때, 특정 함수를 실행할 수 있게 해준다.
+  이벤트를 처리할 수 있는 방법은 총 3가지가 있다. (https://lakelouise.tistory.com/35)
+  1. HTML 요소의 속성으로 등록
+  2. DOM 요소의 프로퍼티로 등록
+  3. addEventListner 사용하여 등록
+
+  document.addEventListner(event, function, Capture)
+  - event: 이벤트 이름, 여기에는 on prefix를 달면 안된다. 그저 click 으로 쓰자.
+    . click: 마우스로 클릭할 때 발생하는 이벤트
+    . mouseover: 마우스를 가져다 댈 때 발생하는 이벤트
+    . mouseout: 마우스 포인터가 화면 밖으로 나갔을 때
+    . mpusemove: 마우스 포인터를 움직일 때
+    . 그외 : https://www.w3schools.com/jsref/dom_obj_event.asp 를 참조하면 다양한 동작이 있다.
+  - function: 호출할 함수명, 이 이벤트가 발생하면 function이 호출된다. 여기서 주의할 점은 함수 이름에 ()를 넣지 않는다는 것
+              함수에 ()를 넣지 않는 이유는, 평상시에 실행되는 것이 아니라 이벤트 발생 시에만 실행되길 원하기 때문이다.
+              즉, 유저가 클릭 시 자바스크립트가 실행 버튼을 대신 눌러주길 바라는 것이다.
+  - Capture: (Optional, default = false) true면 capturing phase, false이면 bubbling phase가 실행된다.
+
+  return value는 없다.
+  */
+  $button.addEventListener('click', onClickButton);
+  $input.addEventListener('input', onInputButton);
+
+
+
+</script>
+
+
+</body>
+</html>
